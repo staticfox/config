@@ -18,7 +18,7 @@ have_prog() {
 }
 
 setup_pacaur() {
-    #pacaur -Syu
+    pacaur -Syu
     pkgmgr="pacaur"
     pkgmgr_install="-S"
 }
