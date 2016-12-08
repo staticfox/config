@@ -88,3 +88,14 @@ fi
 rvm install "$rversion"
 rvm use "$rversion"
 gem install bundler
+
+# Rust!
+if ! have_prog rustc ; then
+    wget https://static.rust-lang.org/dist/rust-1.13.0-x86_64-unknown-linux-gnu.tar.gz
+    tar -zxvf rust-1.13.0-x86_64-unknown-linux-gnu.tar.gz
+    cd rust-1.13.0-x86_64-unknown-linux-gnu
+    sudo ./install.sh
+    cd ..
+    rm -r rust-1.13.0-x86_64-unknown-linux-gnu
+    rm -f rust-1.13.0-x86_64-unknown-linux-gnu.tar.gz
+fi
