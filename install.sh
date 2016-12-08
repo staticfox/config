@@ -64,6 +64,11 @@ done
 # Create a genera purpose bin directory
 mkdir -p ${HOME}/bin
 
+for p in `ls ${PWD}/home/bin/` ; do
+    rm -f ${HOME}/bin/${p}
+    ln -s ${PWD}/home/bin/$p ${HOME}/bin/${p}
+done
+
 # Customized theme and syntax highlighting beacuse I like my code
 # pretty :3
 mkdir -p ~/.config/sublime-text-3/Packages/Rust/
