@@ -79,9 +79,12 @@ mkdir -p ~/.config/sublime-text-3/Packages/User/
 rm -f ~/.config/sublime-text-3/Packages/User/Monokai-Static.tmTheme
 ln -s ${PWD}/st3/Monokai-Static.tmTheme ~/.config/sublime-text-3/Packages/User/Monokai-Static.tmTheme
 
-# Ruby!
-install_rvm
+# rvm
+if ! have_prog rvm ; then
+    install_rvm
+fi
 
+# Ruby!
 rvm install "$rversion"
 rvm use "$rversion"
 gem install bundler
