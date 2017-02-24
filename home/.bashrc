@@ -194,6 +194,8 @@ alias gs='git status'
 alias gg='gs'
 alias mm='mt'
 
+alias oops='git commit --amend --no-edit'
+
 alias tls='tmux list-session'
 
 export EDITOR=vim
