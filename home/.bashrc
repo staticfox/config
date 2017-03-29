@@ -172,12 +172,15 @@ fi
 
 LS_COLORS=$LS_COLORS:'di=0;36:' ; export LS_COLORS
 
-#PATH="${HOME}/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
+#PATH="/home/static/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/home/static/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/static/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/static/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/static/perl5"; export PERL_MM_OPT;
 export GPG_TTY=$(tty)
+
+# added by travis gem
+[ -f /home/static/.travis/travis.sh ] && source /home/static/.travis/travis.sh
 
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
@@ -227,3 +230,7 @@ case ${TERM} in
             fi
         '
 esac
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
