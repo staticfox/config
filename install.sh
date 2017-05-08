@@ -101,6 +101,7 @@ echo "Installing Ruby..."
 # Ruby!
 if ! have_prog rvm ; then
     install_rvm
+    . ${HOME}/.rvm/scripts/rvm
     rvm install "$rversion"
     rvm use "$rversion"
     gem install bundler
