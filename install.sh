@@ -58,6 +58,7 @@ else
     exit 1
 fi
 
+echo "Installing packages..."
 # Install packages
 want_progs=(git clang htop iftop iotop nmap mtr whois zsh)
 
@@ -71,11 +72,13 @@ done
 # Create a general purpose bin directory
 mkdir -p ${HOME}/bin
 
+echo "Installing utilities..."
 for p in `ls ${PWD}/home/bin/` ; do
     rm -f ${HOME}/bin/${p}
     ln -s ${PWD}/home/bin/$p ${HOME}/bin/${p}
 done
 
+echo "Installing Sublime Text 3 dependencies..."
 # Customized theme and syntax highlighting beacuse I like my code
 # pretty :3
 mkdir -p ~/.config/sublime-text-3/Packages/Rust/
@@ -94,6 +97,7 @@ echo "Installing .zshrc..."
 rm ~/.zshrc
 ln -s ${PWD}/home/.zshrc ~/.zshrc
 
+echo "Installing Ruby..."
 # Ruby!
 if ! have_prog rvm ; then
     install_rvm
@@ -102,6 +106,7 @@ if ! have_prog rvm ; then
     gem install bundler
 fi
 
+echo "Installing Rust..."
 # Rust!
 if ! have_prog rustc ; then
     wget https://static.rust-lang.org/dist/rust-1.13.0-x86_64-unknown-linux-gnu.tar.gz
