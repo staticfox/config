@@ -39,7 +39,6 @@ alias l='ls -CF'
 alias oops='git commit --amend --no-edit'
 alias fb='thunar'
 
-
 autoload -U promptinit
 promptinit
 set_prompt()
@@ -92,8 +91,14 @@ fi
 
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="${HOME}/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/bin" # Add personal stuff
 export EDITOR=vim
 
 # added by travis gem
 [ -f /home/$USER/.travis/travis.sh ] && source /home/$USER/.travis/travis.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[[ -s "/home/static/.gvm/scripts/gvm" ]] && source "/home/static/.gvm/scripts/gvm"
