@@ -127,3 +127,8 @@ if ! have_prog nvm ; then
     . ${HOME}/.nvm/nvm.sh
     nvm install $nodeversion
 fi
+
+echo "Installing EmberJS..."
+if ! have_prog ember ; then
+    npm install -g ember
+fi
