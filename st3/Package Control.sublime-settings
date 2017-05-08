@@ -1,0 +1,41 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"1337 Color Scheme",
+		"Angular2 HTML Syntax",
+		"Autotools",
+		"Better CoffeeScript",
+		"Bind Zone files",
+		"Chef",
+		"CMake",
+		"CMakeBuilder",
+		"Coffee Color Scheme",
+		"Dockerfile Syntax Highlighting",
+		"Ember.js Snippets",
+		"Fortran",
+		"GAS-x86 (or x64) highlighting scheme",
+		"Jinja2",
+		"JSX",
+		"Line Endings Unify",
+		"M4Expand",
+		"MinimalFortran",
+		"nginx",
+		"OmniMarkupPreviewer",
+		"Package Control",
+		"PackageResourceViewer",
+		"Pretty JSON",
+		"Puppet",
+		"React IDE",
+		"SFTP",
+		"Swift",
+		"Theme - Vim Blackboard",
+		"TOML",
+		"TrailingSpaces",
+		"TypeScript",
+		"ZSH"
+	]
+}
