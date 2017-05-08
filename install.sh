@@ -10,7 +10,7 @@ rversion="ruby-2.3.3"
 # This should only be run by an actual user
 if [ $UID -eq 0 ] ; then
     echo "Please do not run this as root."
-    exit
+    exit 1
 fi
 
 have_prog() {
@@ -38,6 +38,9 @@ pkg_install() {
 install_if_need() {
     if ! have_prog $1 ; then
         pkg_install $1
+        echo 0
+    else
+        echo 1
     fi
 }
 
@@ -52,16 +55,20 @@ elif have_prog apt ; then
     setup_apt
 else
     echo "Unable to determine package manager!"
-    exit
+    exit 1
 fi
 
-want_progs=(git clang htop iftop iotop nmap mtr whois)
+# Install packages
+want_progs=(git clang htop iftop iotop nmap mtr whois zsh)
 
 for p in "${want_progs[@]}" ; do
-    install_if_need $p
+    res=$(install_if_need $p)
+    if [[ $p = 'zsh' && $res -eq 0 ]]; then
+        pkg_install 'zsh-syntax-highlighting'
+    fi
 done
 
-# Create a genera purpose bin directory
+# Create a general purpose bin directory
 mkdir -p ${HOME}/bin
 
 for p in `ls ${PWD}/home/bin/` ; do
@@ -79,15 +86,16 @@ mkdir -p ~/.config/sublime-text-3/Packages/User/
 rm -f ~/.config/sublime-text-3/Packages/User/Monokai-Static.tmTheme
 ln -s ${PWD}/st3/Monokai-Static.tmTheme ~/.config/sublime-text-3/Packages/User/Monokai-Static.tmTheme
 
-# rvm
-if ! have_prog rvm ; then
-    install_rvm
-fi
+rm ~/.zshrc
+ln -s ${PWD}/home/.zshrc ~/.zshrc
 
 # Ruby!
-rvm install "$rversion"
-rvm use "$rversion"
-gem install bundler
+if ! have_prog rvm ; then
+    install_rvm
+    rvm install "$rversion"
+    rvm use "$rversion"
+    gem install bundler
+fi
 
 # Rust!
 if ! have_prog rustc ; then
