@@ -86,6 +86,11 @@ mkdir -p ~/.config/sublime-text-3/Packages/User/
 rm -f ~/.config/sublime-text-3/Packages/User/Monokai-Static.tmTheme
 ln -s ${PWD}/st3/Monokai-Static.tmTheme ~/.config/sublime-text-3/Packages/User/Monokai-Static.tmTheme
 
+rm -f ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings
+ln -s ${PWD}/st3/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings
+
+echo "Installing .zshrc..."
+# Relink zshrc
 rm ~/.zshrc
 ln -s ${PWD}/home/.zshrc ~/.zshrc
 
