@@ -6,6 +6,7 @@ pkgmgr=
 pkgmgr_install=
 need_sudo_pkg=
 rversion="ruby-2.3.4"
+nodeversion="v7.10.0"
 
 # This should only be run by an actual user
 if [ $UID -eq 0 ] ; then
@@ -117,4 +118,12 @@ if ! have_prog rustc ; then
     cd ..
     rm -rf rust-1.13.0-x86_64-unknown-linux-gnu
     rm -f rust-1.13.0-x86_64-unknown-linux-gnu.tar.gz
+fi
+
+echo "Installing Node..."
+# NodeJS!
+if ! have_prog nvm ; then
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | $SHELL
+    . ${HOME}/.nvm/nvm.sh
+    nvm install $nodeversion
 fi
