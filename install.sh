@@ -94,7 +94,7 @@ ln -s ${PWD}/st3/Package\ Control.sublime-settings ~/.config/sublime-text-3/Pack
 
 echo "Installing .zshrc..."
 # Relink zshrc
-rm ~/.zshrc
+rm -f ~/.zshrc
 ln -s ${PWD}/home/.zshrc ~/.zshrc
 
 echo "Installing Ruby..."
@@ -114,6 +114,6 @@ if ! have_prog rustc ; then
     cd rust-1.13.0-x86_64-unknown-linux-gnu
     sudo ./install.sh
     cd ..
-    rm -r rust-1.13.0-x86_64-unknown-linux-gnu
+    rm -rf rust-1.13.0-x86_64-unknown-linux-gnu
     rm -f rust-1.13.0-x86_64-unknown-linux-gnu.tar.gz
 fi
