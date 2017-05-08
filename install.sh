@@ -5,7 +5,7 @@ PWD=`pwd`
 pkgmgr=
 pkgmgr_install=
 need_sudo_pkg=
-rversion="ruby-2.3.3"
+rversion="ruby-2.3.4"
 
 # This should only be run by an actual user
 if [ $UID -eq 0 ] ; then
