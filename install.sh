@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ue
 
 PWD=`pwd`
 pkgmgr=
@@ -7,11 +7,18 @@ pkgmgr_install=
 need_sudo_pkg=
 rversion="ruby-2.3.4"
 nodeversion="v7.10.0"
+want_pkgs=false
 
 # This should only be run by an actual user
 if [ $UID -eq 0 ] ; then
     echo "Please do not run this as root."
     exit 1
+fi
+
+if [ $# -ge 1 ] ; then
+    if [ $1 = "-p" ]; then
+        want_pkgs=true
+    fi
 fi
 
 have_prog() {
@@ -50,25 +57,33 @@ install_rvm() {
     \curl -sSL https://get.rvm.io | bash -s stable
 }
 
-if have_prog pacaur ; then
-    setup_pacaur
-elif have_prog apt ; then
-    setup_apt
+if $want_pkgs ; then
+    if have_prog pacaur ; then
+        setup_pacaur
+    elif have_prog apt ; then
+        setup_apt
+    else
+        echo "Unable to determine package manager!"
+        exit 1
+    fi
 else
-    echo "Unable to determine package manager!"
-    exit 1
+    echo "Skipping package update"
 fi
 
-echo "Installing packages..."
-# Install packages
-want_progs=(git clang htop iftop iotop nmap mtr whois zsh)
+if $want_pkgs ; then
+    echo "Installing packages..."
+    # Install packages
+    want_progs=(git clang htop iftop iotop nmap mtr whois zsh)
 
-for p in "${want_progs[@]}" ; do
-    res=$(install_if_need $p)
-    if [[ $p = 'zsh' && $res -eq 0 ]]; then
-        pkg_install 'zsh-syntax-highlighting'
-    fi
-done
+    for p in "${want_progs[@]}" ; do
+        res=$(install_if_need $p)
+        if [[ $p = 'zsh' && $res -eq 0 ]]; then
+            pkg_install 'zsh-syntax-highlighting'
+        fi
+    done
+else
+    echo "Skipping package installation"
+fi
 
 # Create a general purpose bin directory
 mkdir -p ${HOME}/bin
@@ -97,6 +112,12 @@ echo "Installing .zshrc..."
 # Relink zshrc
 rm -f ~/.zshrc
 ln -s ${PWD}/home/.zshrc ~/.zshrc
+
+if ! $want_pkgs ; then
+    echo "Not installing languages."
+    echo "Done."
+    exit 0
+fi
 
 echo "Installing Ruby..."
 # Ruby!
@@ -132,3 +153,10 @@ echo "Installing EmberJS..."
 if ! have_prog ember ; then
     npm install -g ember
 fi
+
+echo "Installing Bower..."
+if ! have_prog bower ; then
+    npm install -g bower
+fi
+
+echo "Done."
