@@ -87,6 +87,7 @@ fi
 
 # Create a general purpose bin directory
 mkdir -p ${HOME}/bin
+mkdir -p ${HOME}/binext
 
 echo "Installing utilities..."
 for p in `ls ${PWD}/home/bin/` ; do
