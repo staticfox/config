@@ -114,6 +114,11 @@ echo "Installing .zshrc..."
 rm -f ~/.zshrc
 ln -s ${PWD}/home/.zshrc ~/.zshrc
 
+echo "Installing .vimrc..."
+# Relink vimrc
+rm -f ~/.vimrc
+ln -s ${PWD}/home/.vimrc ~/.vimrc
+
 if ! $want_pkgs ; then
     echo "Not installing languages."
     echo "Done."
