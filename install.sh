@@ -32,9 +32,9 @@ setup_pacaur() {
 }
 
 setup_apt() {
-    sudo apt update
-    sudo apt upgrade
-    pkgmgr="apt"
+    sudo apt-get update
+    sudo apt-get upgrade
+    pkgmgr="apt-get"
     pkgmgr_install="install"
     need_sudo_pkg="sudo"
 }
@@ -60,7 +60,7 @@ install_rvm() {
 if $want_pkgs ; then
     if have_prog pacaur ; then
         setup_pacaur
-    elif have_prog apt ; then
+    elif have_prog apt-get ; then
         setup_apt
     else
         echo "Unable to determine package manager!"
