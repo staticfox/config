@@ -36,6 +36,7 @@ fi
 
 # Aliases
 alias l='ls -lahtr'
+alias gc='git commit'
 alias gd='git diff'
 alias gs='git status'
 alias gg='git grep'
