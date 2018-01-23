@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+# Print the absolute path of a file
+# ./configure --prefix=$(fp ../build)
+
+use Cwd 'abs_path';
+
+my $argc = $#ARGV + 1;
+
+if ($argc < 1) {
+    print "Prints full processed path of a file\nusage: fp path/to/file.txt\n";
+    exit(0);
+}
+
+my $abs_path = abs_path($ARGV[0]);
+print "$abs_path\n";
+
